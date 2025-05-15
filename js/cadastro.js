@@ -1,10 +1,11 @@
 // cadastro
 const botao = document.getElementById("btnCadastrar");
-let usuarios = [];
+//let usuarios = [];
 
 // cadastrar
 botao.addEventListener('click',
     function (){
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         const usuario = {
             login: document.getElementById('login').value,
             senha: document.getElementById('senha').value
@@ -12,6 +13,8 @@ botao.addEventListener('click',
         usuarios.push(usuario);
             let listaUsuarios = JSON.stringify(usuarios);
             localStorage.setItem("usuarios", listaUsuarios);
+            document.getElementById('login').value = "";
+            document.getElementById('senha').value = "";
             listar();
     }
 );
@@ -28,11 +31,32 @@ function listar(){
             <td>${usuario.login}</td>
             <td>${usuario.senha}</td>
             <td>
-                <button onclick"excluirUsuario(${index})">Remover</button>
+                <button onclick"editarUsuario(${index}">Editar</button>
+                <button onclick="excluirUsuario(${index})">Remover</button>
             </td>
         `;
         tabelaListaUsuarios.appendChild(linha);
     });
+}
+
+function excluirUsuario(index){
+    const listaUsuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    if(confirm("Você realmente deseja excluir?")){
+        listaUsuariosCadastrados.splice(index, 1);
+        listajson = JSON.stringify(listaUsuariosCadastrados);
+        localStorage.setItem("usuarios", listajson);
+        listar();
+    }
+}
+
+function editarUsuario(index){
+    const editarUsuarioCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    if(confirm("Você realmente deseja editar?")){
+        localStorage.setItem("usuarios");
+        listar();
+    }
 }
 
 listar();
