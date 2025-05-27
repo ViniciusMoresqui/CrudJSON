@@ -4,22 +4,22 @@ const botao = document.getElementById("btnCadastrar");
 
 // cadastrar
 botao.addEventListener('click',
-    function (){
+    function () {
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         const usuario = {
             login: document.getElementById('login').value,
             senha: document.getElementById('senha').value
         }
         usuarios.push(usuario);
-            let listaUsuarios = JSON.stringify(usuarios);
-            localStorage.setItem("usuarios", listaUsuarios);
-            document.getElementById('login').value = "";
-            document.getElementById('senha').value = "";
-            listar();
+        let listaUsuarios = JSON.stringify(usuarios);
+        localStorage.setItem("usuarios", listaUsuarios);
+        document.getElementById('login').value = "";
+        document.getElementById('senha').value = "";
+        listar();
     }
 );
 
-function listar(){
+function listar() {
     const listaUsuarioCad = JSON.parse(localStorage.getItem("usuarios")) || [];
     console.log(listaUsuarioCad);
     const tabelaListaUsuarios = document.getElementById('listaUsuario');
@@ -31,7 +31,7 @@ function listar(){
             <td>${usuario.login}</td>
             <td>${usuario.senha}</td>
             <td>
-                <button onclick"editarUsuario(${index}">Editar</button>
+                <button onclick="editarUsuario(${index})">Editar</button>
                 <button onclick="excluirUsuario(${index})">Remover</button>
             </td>
         `;
@@ -39,10 +39,10 @@ function listar(){
     });
 }
 
-function excluirUsuario(index){
+function excluirUsuario(index) {
     const listaUsuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    if(confirm("Você realmente deseja excluir?")){
+    if (confirm("Você realmente deseja excluir?")) {
         listaUsuariosCadastrados.splice(index, 1);
         listajson = JSON.stringify(listaUsuariosCadastrados);
         localStorage.setItem("usuarios", listajson);
@@ -50,13 +50,12 @@ function excluirUsuario(index){
     }
 }
 
-function editarUsuario(index){
-    const editarUsuarioCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    if(confirm("Você realmente deseja editar?")){
-        localStorage.setItem("usuarios");
-        listar();
-    }
+function editarUsuario(index) {
+    const listaUsuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuario = listaUsuariosCadastrados[index];
+    document.getElementById('login').value = usuario.login;
+    document.getElementById('senha').value = usuario.senha;
+    document.getElementById('indexEditar').value = index;
 }
 
 listar();
