@@ -10,7 +10,13 @@ botao.addEventListener('click',
             login: document.getElementById('login').value,
             senha: document.getElementById('senha').value
         }
-        usuarios.push(usuario);
+        const indexEditando = document.getElementById('indexEditar').value;
+        if(indexEditando !== ""){
+            usuarios[indexEditando] = usuario;
+            document.getElementById('indexEditar').value = "";
+        }else{
+            usuarios.push(usuario);
+        }
         let listaUsuarios = JSON.stringify(usuarios);
         localStorage.setItem("usuarios", listaUsuarios);
         document.getElementById('login').value = "";
@@ -56,6 +62,7 @@ function editarUsuario(index) {
     document.getElementById('login').value = usuario.login;
     document.getElementById('senha').value = usuario.senha;
     document.getElementById('indexEditar').value = index;
+
 }
 
 listar();
