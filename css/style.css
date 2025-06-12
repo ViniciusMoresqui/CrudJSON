@@ -1,3 +1,161 @@
-body{
-    background-color: burlywood;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #1d3557, #457b9d);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #1d3557;
+}
+
+.container {
+  background-color: #f1faee;
+  padding: 30px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+}
+
+h2 {
+  text-align: center;
+  color: #1d3557;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+input {
+  padding: 12px 15px;
+  border: 1.5px solid #a8dadc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  outline-offset: 2px;
+}
+
+input:focus {
+  border-color: #457b9d;
+  outline: 2px solid #a8dadc;
+}
+
+button {
+  background-color: #1d3557;
+  color: white;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background-color: #457b9d;
+  transform: scale(1.05);
+}
+
+.erro, #mensagemErro {
+  color: #e63946; /* vermelho com mais contraste */
+  text-align: center;
+  margin-top: 12px;
+  font-weight: 600;
+  min-height: 22px;
+  user-select: none;
+}
+
+/* Tabela de usuários */
+.tabela_usuario {
+  margin-top: 30px;
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(29, 53, 87, 0.15);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 12px 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  vertical-align: middle;
+  color: #1d3557;
+}
+
+th {
+  background-color: #a8dadc;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e0f0f6;
+}
+
+/* Botões dentro da tabela */
+button[onclick*="editarUsuario"] {
+  background-color: #2a9d8f;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+button[onclick*="editarUsuario"]:hover {
+  background-color: #21867a;
+}
+
+button[onclick*="excluirUsuario"] {
+  background-color: #e63946;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+button[onclick*="excluirUsuario"]:hover {
+  background-color: #b8323b;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
 }
